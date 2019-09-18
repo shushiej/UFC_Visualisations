@@ -13,63 +13,67 @@ const colors = {
 }
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(1500, 1500);
 }
 
-function drawQuadrant(mid, sd, sa, ta, td) {
+function drawQuadrant(x,y, sd, sa, ta, td) {
     strokeWeight(5);
-    
+    const mid = {
+        x: x,
+        y: y
+    }
+
     beginShape(LINES);
     stroke(colors.STRIKING_ACC);
-    vertex(mid+125, mid-125);
-    vertex(mid+125, mid-75);
-    vertex(mid+75, mid-125);
+    vertex(mid.x+125, mid.y-125);
+    vertex(mid.x+125, mid.y-75);
+    vertex(mid.x+75, mid.y-125);
     endShape(CLOSE);
 
     beginShape(LINES);
     stroke(colors.STRIKING_DEF);
-    vertex(mid-125, mid-125);
-    vertex(mid-125, mid-75);
-    vertex(mid-75, mid-125);
+    vertex(mid.x-125, mid.y-125);
+    vertex(mid.x-125, mid.y-75);
+    vertex(mid.x-75, mid.y-125);
     endShape(CLOSE);
 
     beginShape(LINES);
     stroke(colors.TAKEDOWN_ACC);
-    vertex(mid-125, mid+125);
-    vertex(mid-125, mid+75);
-    vertex(mid-75, mid+125);
+    vertex(mid.x-125, mid.y+125);
+    vertex(mid.x-125, mid.y+75);
+    vertex(mid.x-75, mid.y+125);
     endShape(CLOSE);
 
     beginShape(LINES);
     stroke(colors.TAKEDOWN_DEF);
-    vertex(mid+125, mid+125);
-    vertex(mid+75, mid+125);
-    vertex(mid+125, mid+75);
+    vertex(mid.x+125, mid.y+125);
+    vertex(mid.x+75, mid.y+125);
+    vertex(mid.x+125, mid.y+75);
     endShape(CLOSE);
 
     stroke("#000");
     strokeWeight(10);
-    point(mid,mid);
+    point(mid.x,mid.y);
 
     textSize(12);
     noStroke();
     fill(1,2);
     textFont('Helvetica Neue');
-    text("Striking Accuracy", mid+75,mid-150);
-    text("Striking Defense", mid-125,mid-150);
-    text("Takedown Accuracy", mid-125,mid+150);
-    text("Takedown Defense", mid+75,mid+150);
+    text("Striking Accuracy", mid.x+75,mid.y-150);
+    text("Striking Defense", mid.x-125,mid.y-150);
+    text("Takedown Accuracy", mid.x-125,mid.y+150);
+    text("Takedown Defense", mid.x+75,mid.y+150);
 
     drawAxis(mid, sd, sa, ta, td);
 
 }
 
 function drawAxis(mid, sd, sa, ta, td) {
-    let mid_vec = createVector(mid,mid);
-    let td_vec = createVector(mid+125,mid+125);
-    let ta_vec = createVector(mid-125,mid+125);
-    let sa_vec = createVector(mid+125,mid-125);
-    let sd_vec = createVector(mid-125,mid-125);
+    let mid_vec = createVector(mid.x,mid.y);
+    let td_vec = createVector(mid.x+125,mid.y+125);
+    let ta_vec = createVector(mid.x-125,mid.y+125);
+    let sa_vec = createVector(mid.x+125,mid.y-125);
+    let sd_vec = createVector(mid.x-125,mid.y-125);
 
     let takedown_def = p5.Vector.lerp(mid_vec, td_vec, td);
     let takedown_acc = p5.Vector.lerp(mid_vec, ta_vec, ta);
@@ -108,5 +112,8 @@ function drawAxis(mid, sd, sa, ta, td) {
 }
 
 function draw() {
-    drawQuadrant(300,0.67, 0.50,0.45,0.85);
+    drawQuadrant(300, 300 ,0.67, 0.50,0.45,0.85);
+    drawQuadrant(680, 300 ,0.67, 0.50,0.45,0.85);
+    drawQuadrant(300, 650 ,0.67, 0.50,0.45,0.85);
+    drawQuadrant(680, 650 ,0.67, 0.50,0.45,0.85);
 }
