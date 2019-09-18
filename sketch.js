@@ -5,94 +5,108 @@ let g = 255;
 let b = 255;
 let a = 0;
 
+const colors = {
+    TAKEDOWN_DEF: "#561689",
+    TAKEDOWN_ACC: "#1876fb",
+    STRIKING_ACC: "#FE4902",
+    STRIKING_DEF: "#F7a52D",
+}
+
 function setup() {
     createCanvas(800, 800);
 }
 
-function drawQuadrant() {
+function drawQuadrant(mid, sd, sa, ta, td) {
     strokeWeight(5);
-    stroke("#CE2939");
+    
     beginShape(LINES);
-    vertex(400, 200);
-    vertex(450,200);
-    vertex(450,200);
-    vertex(450, 250);
+    stroke(colors.STRIKING_ACC);
+    vertex(mid+125, mid-125);
+    vertex(mid+125, mid-75);
+    vertex(mid+75, mid-125);
     endShape(CLOSE);
 
     beginShape(LINES);
-    vertex(200, 200);
-    vertex(250,200);
-    vertex(200,200);
-    vertex(200, 250);
+    stroke(colors.STRIKING_DEF);
+    vertex(mid-125, mid-125);
+    vertex(mid-125, mid-75);
+    vertex(mid-75, mid-125);
     endShape(CLOSE);
 
     beginShape(LINES);
-    vertex(200, 400);
-    vertex(200,450);
-    vertex(200,450);
-    vertex(250,450);
+    stroke(colors.TAKEDOWN_ACC);
+    vertex(mid-125, mid+125);
+    vertex(mid-125, mid+75);
+    vertex(mid-75, mid+125);
     endShape(CLOSE);
 
     beginShape(LINES);
-    vertex(450, 400);
-    vertex(450,450);
-    vertex(450,450);
-    vertex(400,450);
+    stroke(colors.TAKEDOWN_DEF);
+    vertex(mid+125, mid+125);
+    vertex(mid+75, mid+125);
+    vertex(mid+125, mid+75);
     endShape(CLOSE);
 
-    strokeWeight(15);
-    point(325,325);
+    stroke("#000");
+    strokeWeight(10);
+    point(mid,mid);
 
     textSize(12);
     noStroke();
     fill(1,2);
     textFont('Helvetica Neue');
-    text("Striking Accuracy", 380,190);
-    text("Striking Defense", 180,190);
-    text("Takedown Accuracy", 180,470);
-    text("Takedown Defense", 400,470);
+    text("Striking Accuracy", mid+75,mid-150);
+    text("Striking Defense", mid-125,mid-150);
+    text("Takedown Accuracy", mid-125,mid+150);
+    text("Takedown Defense", mid+75,mid+150);
+
+    drawAxis(mid, sd, sa, ta, td);
 
 }
 
-function drawAxis(sd, sa, ta, td) {
-    stroke("#CE2939")
-    strokeWeight(3);
-    let mid = createVector(325,325);
-    let td_vec = createVector(450,450);
-    let ta_vec = createVector(200,450);
-    let sa_vec = createVector(450,200);
-    let sd_vec = createVector(200,200);
+function drawAxis(mid, sd, sa, ta, td) {
+    let mid_vec = createVector(mid,mid);
+    let td_vec = createVector(mid+125,mid+125);
+    let ta_vec = createVector(mid-125,mid+125);
+    let sa_vec = createVector(mid+125,mid-125);
+    let sd_vec = createVector(mid-125,mid-125);
 
-    let takedown_def = p5.Vector.lerp(mid, td_vec, td)
-    let takedown_acc = p5.Vector.lerp(mid, ta_vec, ta)
-    let striking_def = p5.Vector.lerp(mid, sd_vec, sd)
-    let striking_acc = p5.Vector.lerp(mid, sa_vec, sa)
+    let takedown_def = p5.Vector.lerp(mid_vec, td_vec, td);
+    let takedown_acc = p5.Vector.lerp(mid_vec, ta_vec, ta);
+    let striking_def = p5.Vector.lerp(mid_vec, sd_vec, sd);
+    let striking_acc = p5.Vector.lerp(mid_vec, sa_vec, sa);
+
+    strokeWeight(3);
+
     // Takedown Defense
     beginShape(LINES);
-    vertex(mid.x, mid.y);
+    stroke(colors.TAKEDOWN_DEF);
+    vertex(mid_vec.x, mid_vec.y);
     vertex(takedown_def.x,takedown_def.y);
     endShape(CLOSE);
 
     // Takedown Accuracy
     beginShape(LINES);
-    vertex(mid.x, mid.y);
+    stroke(colors.TAKEDOWN_ACC);
+    vertex(mid_vec.x, mid_vec.y);
     vertex(takedown_acc.x,takedown_acc.y);
     endShape(CLOSE);
 
     // Striking Defense
     beginShape(LINES);
-    vertex(mid.x, mid.y);
+    stroke(colors.STRIKING_DEF);
+    vertex(mid_vec.x, mid_vec.y);
     vertex(striking_def.x,striking_def.y);
     endShape(CLOSE);
 
     // Striking Accuracy
     beginShape(LINES);
-    vertex(mid.x, mid.y);
+    stroke(colors.STRIKING_ACC);
+    vertex(mid_vec.x, mid_vec.y);
     vertex(striking_acc.x,striking_acc.y);
     endShape(CLOSE); 
 }
 
 function draw() {
-    drawQuadrant();
-    drawAxis(0.67,0.50,0.45,0.85);
+    drawQuadrant(300,0.67, 0.50,0.45,0.85);
 }
