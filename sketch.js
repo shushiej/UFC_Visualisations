@@ -16,12 +16,17 @@ function setup() {
     createCanvas(1500, 1500);
 }
 
-function drawQuadrant(x,y, sd, sa, ta, td) {
+function drawQuadrant(x,y, sd, sa, ta, td, name) {
     strokeWeight(5);
     const mid = {
         x: x,
         y: y
     }
+    textFont('Helvetica Neue');
+    noStroke();
+    textSize(22);
+    fill(1,2);
+    text(name, mid.x - 70,mid.y-180);
 
     beginShape(LINES);
     stroke(colors.STRIKING_ACC);
@@ -57,8 +62,7 @@ function drawQuadrant(x,y, sd, sa, ta, td) {
 
     textSize(12);
     noStroke();
-    fill(1,2);
-    textFont('Helvetica Neue');
+    
     text("Striking Accuracy", mid.x+75,mid.y-150);
     text("Striking Defense", mid.x-125,mid.y-150);
     text("Takedown Accuracy", mid.x-125,mid.y+150);
@@ -112,8 +116,8 @@ function drawAxis(mid, sd, sa, ta, td) {
 }
 
 function draw() {
-    drawQuadrant(300, 300 ,0.67, 0.50,0.45,0.85);
-    drawQuadrant(680, 300 ,0.67, 0.50,0.45,0.85);
-    drawQuadrant(300, 650 ,0.67, 0.50,0.45,0.85);
-    drawQuadrant(680, 650 ,0.67, 0.50,0.45,0.85);
+    drawQuadrant(300, 300 ,0.67, 0.50,0.45,0.85,"Khabib Nurmagomedov");
+    drawQuadrant(680, 300 ,0.7, 0.90,0.15,0.35, "Conor McGregor");
+    drawQuadrant(300, 680 ,0.89, 0.92,0.93,0.98,"Jon Jones");
+    drawQuadrant(680, 680 ,0.54, 0.80,0.95,0.85, "Daniel Cormier");
 }
