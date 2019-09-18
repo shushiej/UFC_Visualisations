@@ -1,10 +1,3 @@
-let x = 70;
-let y = 70;
-let r = 255;
-let g = 255;
-let b = 255;
-let a = 0;
-
 const colors = {
     TAKEDOWN_DEF: "#561689",
     TAKEDOWN_ACC: "#1876fb",
@@ -13,7 +6,7 @@ const colors = {
 }
 
 function setup() {
-    createCanvas(1500, 1500);
+    createCanvas(1500, 1500).parent('canvasHolder');
 }
 
 function drawQuadrant(x,y, sd, sa, ta, td, name) {
