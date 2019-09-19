@@ -5,8 +5,27 @@ const colors = {
     STRIKING_DEF: "#F7a52D",
 }
 
+let input, button, fighter_question;
+
 function setup() {
     createCanvas(1500, 1500).parent('canvasHolder');
+
+    input  = select('#textInput');
+
+    button = select('#submitButton');
+    button.mousePressed(calc);
+
+    fighter_question = createElement('h2', 'enter fighter name');
+    fighter_question.position(20,5);
+
+    textAlign(CENTER);
+    textSize(50);
+}
+
+function calc() {
+    const name = input.value();
+    drawQuadrant(1200,500,0.6,0.3,0.2,0.9, name);
+    input.value('');
 }
 
 function drawQuadrant(x,y, sd, sa, ta, td, name) {

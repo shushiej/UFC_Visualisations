@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %} Steering behaviour {% endblock title %}
+{% block title %} UFC Fighter Viz {% endblock title %}
 
 {% block head %}
 {{ super() }}
@@ -10,8 +10,12 @@
 
 {% block content %}
 <div class="container">
+  
+    <input id="textInput"/>
+  <button id="submitButton"></button>
   <!-- div element that will hold the canvas -->
   <div id="canvasHolder" align="center">
+   
   </div>
 </div>
 {% endblock content %}
