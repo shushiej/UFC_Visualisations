@@ -7,8 +7,6 @@ const colors = {
 
 function setup() {
     createCanvas(1500, 1500)
-    textAlign(CENTER);
-    textSize(50);
 }
 
 function drawQuadrant(x,y, sd, sa, ta, td, name) {
