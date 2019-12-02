@@ -5,27 +5,10 @@ const colors = {
     STRIKING_DEF: "#F7a52D",
 }
 
-let input, button, fighter_question;
-
 function setup() {
-    createCanvas(1500, 1500).parent('canvasHolder');
-
-    input  = select('#textInput');
-
-    button = select('#submitButton');
-    button.mousePressed(calc);
-
-    fighter_question = createElement('h2', 'enter fighter name');
-    fighter_question.position(20,5);
-
+    createCanvas(1500, 1500)
     textAlign(CENTER);
     textSize(50);
-}
-
-function calc() {
-    const name = input.value();
-    drawQuadrant(1200,500,0.6,0.3,0.2,0.9, name);
-    input.value('');
 }
 
 function drawQuadrant(x,y, sd, sa, ta, td, name) {
@@ -129,7 +112,7 @@ function drawAxis(mid, sd, sa, ta, td) {
 
 function draw() {
     drawQuadrant(300, 300 ,0.67, 0.50,0.45,0.85,"Khabib Nurmagomedov");
-    drawQuadrant(680, 300 ,0.7, 0.90,0.15,0.35, "Conor McGregor");
-    drawQuadrant(300, 680 ,0.89, 0.92,0.93,0.98,"Jon Jones");
-    drawQuadrant(680, 680 ,0.54, 0.80,0.95,0.85, "Daniel Cormier");
+    drawQuadrant(680, 300 ,0.7, 0.51,0.37,0.70, "Conor McGregor");
+    drawQuadrant(300, 680 ,0.66, 0.57,0.41,0.95,"Jon Jones");
+    drawQuadrant(680, 680 ,0.54, 0.51,0.37,0.78, "Daniel Cormier");
 }
